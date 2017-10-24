@@ -34,6 +34,11 @@ public class SimpleListImpl<T> implements SimpleList<T> {
 		size++;
 	}
 
+	@Override
+	public void addEmpty() {
+		//TODO implement (What exactly?)
+	}
+
 	/**
 	 * @return size of the list
 	 */
@@ -46,15 +51,6 @@ public class SimpleListImpl<T> implements SimpleList<T> {
 	 * @param filter SimpleFilter instance
 	 * @return new SimpleList instance
 	 */
-	public SimpleList<T> filter(SimpleFilter<T> filter){
-		SimpleList<T> result = new SimpleListImpl<T>();
-		for(T o : this){
-			if(filter.include(o)){
-				result.add(o);
-			}
-		}
-		return result;
-	}
 
 	/**
 	 * @inheritDoc

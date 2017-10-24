@@ -6,6 +6,8 @@ public interface SimpleList<T> extends Iterable<T> {
 	 */
 	void add(T o);
 
+	void addEmpty();
+
 	/**
 	 * @return current size of the list
 	 */
@@ -15,5 +17,15 @@ public interface SimpleList<T> extends Iterable<T> {
 	 * Generate a new list using the given filter instance.
 	 * @return a new, filtered list
 	 */
-	SimpleList<T> filter(SimpleFilter<T> filter);
+
+	public default SimpleList<T> filter(SimpleFilter<T> filter){
+		SimpleList<T> result = new SimpleListImpl<T>();
+		for(T o : this){
+			if(filter.include(o)){
+				result.add(o);
+			}
+		}
+		return result;
+	}
+
 }
