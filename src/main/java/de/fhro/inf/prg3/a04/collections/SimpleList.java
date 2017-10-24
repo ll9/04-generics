@@ -18,7 +18,7 @@ public interface SimpleList<T> extends Iterable<T> {
 	 * @return a new, filtered list
 	 */
 
-	public default SimpleList<T> filter(SimpleFilter<T> filter){
+	default SimpleList<T> filter(SimpleFilter<T> filter){
 		SimpleList<T> result = new SimpleListImpl<T>();
 		for(T o : this){
 			if(filter.include(o)){
@@ -26,6 +26,14 @@ public interface SimpleList<T> extends Iterable<T> {
 			}
 		}
 		return result;
+	}
+
+	default <R> SimpleList<R>  map() {
+		SimpleList<R> newSimpleList = new SimpleListImpl<R>();
+		for(T o:this)
+			newSimpleList.add((R) o);
+
+		return newSimpleList;
 	}
 
 }
